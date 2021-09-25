@@ -57,10 +57,6 @@ public class Patio {
         return false;
     }
 
-
-
-
-
     // MENU //
     public void menu(){
 
