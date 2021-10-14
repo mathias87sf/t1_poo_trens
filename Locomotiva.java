@@ -1,4 +1,4 @@
-public class Locomotiva {
+public class Locomotiva extends ElementoDeComposicao{
 	private int identificador;
 	private double pesoMaximo;
 	private double pesoMaximoInicial;
@@ -8,6 +8,7 @@ public class Locomotiva {
 
 
 	public Locomotiva(int identificador, double pesoMaximo, int qtdadeVagoes) { 
+		super();
 		this.identificador = identificador;
 		this.pesoMaximo = pesoMaximo;
 		this.pesoMaximoInicial = pesoMaximo;
@@ -20,7 +21,15 @@ public class Locomotiva {
 		return identificador;
 	}
 
-	public double getPesoMaximo() {
+	public double getCapacidade() {	//retorna a quantidade maxima de vagoes suportados
+		return qtdadeMaxVagoes;
+	}
+
+	public void setCapacidade(double qtdadeMaxVagoes){
+		this.qtdadeMaxVagoes = qtdadeMaxVagoes;
+	}
+
+	public double getPesoMaximo(){	//retorna o peso maximo
 		return pesoMaximo;
 	}
 
@@ -32,14 +41,6 @@ public class Locomotiva {
 		return pesoMaximoInicial;
 	}
 
-	public double getQtdadeMaxVagoes() {
-		return qtdadeMaxVagoes;
-	}
-
-	public void setMaxVagoes(double max){
-		this.qtdadeMaxVagoes = max;
-	}
-
 	public double getQtdadeMaxVagoesInicial() {
 		return qtdadeMaxVagoesInicial;
 	}
@@ -48,12 +49,12 @@ public class Locomotiva {
 		return composicao;
 	}
 
-	public boolean livre(){
-		return composicao == null;
-	}
-
 	public void setComposicao(Composicao composicao) {
 		this.composicao = composicao;
+	}
+
+	public boolean livre(){
+		return composicao == null;
 	}
 	
 	@Override

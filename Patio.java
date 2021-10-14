@@ -30,6 +30,13 @@ public class Patio {
         patio.garagemVagoes.estacionaVagao(new Vagao(888, 800));
         patio.garagemVagoes.estacionaVagao(new Vagao(999, 900));
 
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(11, 50));
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(22, 100));
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(33, 15));
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(44, 20));
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(55, 30));
+
+
         patio.menu();     
     }
 
@@ -66,6 +73,7 @@ public class Patio {
         Composicao trem;
 
         System.out.println("\n\nBem vindo ao patio central do sistema ferroviario!");
+        System.out.println("                    v2.0");
         System.out.println("por Mathias Silveira de Freitas @ PUCRS 21280225-0");
 
         while(true){
@@ -94,7 +102,7 @@ public class Patio {
                 id = scan.nextInt();
                 if (idTremValido(id)) { //verifica se o trem existe no patio //poderia ser tb if (getTrem(id) != null)
                     trem = getTrem(id);
-                    System.out.println(trem);
+                    //System.out.println(trem); //nessa versão, fazer isso nesse ponto dá ruim (DEPRECATED)
                 } else {
                     System.out.println(">>> Trem [" + id + "] não existe");
                     trem = null; //pra apaziguar a ira do compilador
