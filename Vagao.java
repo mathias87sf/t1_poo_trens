@@ -14,12 +14,10 @@ public class Vagao extends ElementoDeComposicao{
 		return identificador;
 	}
 
-	//redundancia
 	public double getCapacidade() { //retorna o peso maximo suportado pelo vagao
 		return capacidadeCarga;
 	}
 
-	//redundancia
 	public void setCapacidade(double peso){
 		this.capacidadeCarga = peso;
 	}

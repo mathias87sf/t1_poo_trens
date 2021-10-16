@@ -5,7 +5,6 @@ public class Composicao {
 	private ArrayList<ElementoDeComposicao> composicao;
 	private int qtdLocomotivas;
 	private int qtdVagoes;
-	//private int qtdVagoesPassageiros;
 
 	public Composicao(int identificador){
 		this.identificador = identificador;
@@ -20,8 +19,6 @@ public class Composicao {
 		return qtdLocomotivas;
 	}
 
-	//usado apenas no toString
-	
 	public Locomotiva getLocomotiva(int posicao) {
 		if (posicao >= 0 && posicao < qtdLocomotivas) {
 			return (Locomotiva)composicao.get(posicao);
@@ -34,7 +31,6 @@ public class Composicao {
 		return qtdVagoes;
 	}
 
-	//usado apenas no toString
 	public Vagao getVagao(int posicao) {
 		if (posicao >= qtdLocomotivas) { //se está no dominio dos vagoes (após locomotivas)
 			return (Vagao)composicao.get(posicao);
@@ -43,7 +39,6 @@ public class Composicao {
 		}
 	}
 	
-
 	public boolean engataLocomotiva(Locomotiva locomotiva){
 		//se não há elementos na composicao, apenas insere a locomotiva
 		if(composicao.isEmpty()){
@@ -57,7 +52,7 @@ public class Composicao {
 		//só é possível engatar locomotivas antes dos vagões
 		for (ElementoDeComposicao elementoDeComposicao : composicao) {
 			if(elementoDeComposicao instanceof Vagao) { //se há uma instância de vagão na composição, então não pode mais engatar locomotivas
-				System.out.println(">>> ERRO: Nao eh possivel engatar LOCOMOTIVAS APOS VAGOES!");	
+				//System.out.println(">>> ERRO: Nao eh possivel engatar LOCOMOTIVAS APOS VAGOES!");	
 				return false;
 			}
 		}
@@ -77,14 +72,14 @@ public class Composicao {
 			}
 		}
 
-		System.out.println("DEBUG: Adicionei a locomotiva " + locomotiva.getIdentificador());   /////////
+		//System.out.println("DEBUG: Adicionei a locomotiva " + locomotiva.getIdentificador());   /////////
 		return true;
 	}
 
 	public boolean engataVagao(Vagao vagao) {
 		//se não há locomotivas, não há como engatar vagões
 		if (qtdLocomotivas < 1) { 
-			System.out.println(">>> ERRO: Nao eh possivel engatar VAGOES SEM LOCOMOTIVA!");
+			//System.out.println(">>> ERRO: Nao eh possivel engatar VAGOES SEM LOCOMOTIVA!");
 			return false;
 		}
 	
@@ -101,7 +96,6 @@ public class Composicao {
 		}
 
 		double pesoVagao = vagao.getCapacidade();
-
 		
 		//System.out.println("DEBUG: PESO MAXIMO que as locomotivas suportam: " + pesoMaxLocomotivas);
 		//System.out.println("DEBUG: QUANTIDADE MAXIMA de vagoes que as locomotivas suportam: " + qtdVagoesSuportados);
@@ -114,20 +108,19 @@ public class Composicao {
 				qtdVagoes++;
 				vagao.setComposicao(this);
 				
-				System.out.println("DEBUG: Adicionei o vagao " + vagao.getIdentificador()); /////////
+				//System.out.println("DEBUG: Adicionei o vagao " + vagao.getIdentificador()); /////////
 				
 				return true;
 			} else {
-				System.out.println(">>> ERRO: Quantidade limite de vagoes atingida!");
+				//System.out.println(">>> ERRO: Quantidade limite de vagoes atingida!");
 			}
 		} else {
-			System.out.println(">>> ERRO: Peso limite atingido!");
+			//System.out.println(">>> ERRO: Peso limite atingido!");
 		}
 
-		System.out.println(">>> ERRO: FALHEI em adicionar um vagao!");
+		//System.out.println(">>> ERRO: FALHEI em adicionar um vagao!");
 		return false;
 	}
-
 	
 	public Locomotiva desengataLocomotiva() {
 		if (qtdLocomotivas < 1) return null; //se nao ha locomotivas na composicao, retorna null
@@ -154,7 +147,7 @@ public class Composicao {
 			}
 		}
 
-		System.out.println("DEBUG: DESENGATEI locomotiva " + locomotiva.getIdentificador());
+		//System.out.println("DEBUG: DESENGATEI locomotiva " + locomotiva.getIdentificador());
 
 		return locomotiva;
 	}
@@ -168,7 +161,7 @@ public class Composicao {
 		qtdVagoes--;
 		vagao.setComposicao(null);
 
-		System.out.println("DEBUG: DESENGATEI vagao " + vagao.getIdentificador());
+		//System.out.println("DEBUG: DESENGATEI vagao " + vagao.getIdentificador());
 
 		return vagao;
 	}
