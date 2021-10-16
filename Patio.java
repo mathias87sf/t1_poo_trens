@@ -102,7 +102,6 @@ public class Patio {
                 id = scan.nextInt();
                 if (idTremValido(id)) { //verifica se o trem existe no patio //poderia ser tb if (getTrem(id) != null)
                     trem = getTrem(id);
-                    //System.out.println(trem); //nessa versão, fazer isso nesse ponto dá ruim (DEPRECATED)
                 } else {
                     System.out.println(">>> Trem [" + id + "] não existe");
                     trem = null; //pra apaziguar a ira do compilador
@@ -111,7 +110,6 @@ public class Patio {
 
                 while(opt == 2){
                     System.out.println("\n# Editando trem [" + id + "] #");
-                    
                     System.out.println("1 - Inserir uma locomotiva");
                     System.out.println("2 - Inserir um vagao");
                     System.out.println("3 - Remover elemento");
