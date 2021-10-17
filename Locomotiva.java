@@ -17,10 +17,12 @@ public class Locomotiva extends ElementoDeComposicao{
 		this.composicao = null;
 	}
 
+	@Override
 	public int getIdentificador() {
 		return identificador;
 	}
 
+	@Override
 	public double getCapacidade() {	//retorna a quantidade maxima de vagoes suportados
 		return qtdadeMaxVagoes;
 	}
@@ -45,10 +47,12 @@ public class Locomotiva extends ElementoDeComposicao{
 		return qtdadeMaxVagoesInicial;
 	}
 
+	@Override
 	public Composicao getComposicao() {
 		return composicao;
 	}
 
+	@Override
 	public void setComposicao(Composicao composicao) {
 		this.composicao = composicao;
 	}

@@ -10,10 +10,12 @@ public class Vagao extends ElementoDeComposicao{
 		this.composicao = null;
 	}
 
+	@Override
 	public int getIdentificador() {
 		return identificador;
 	}
 
+	@Override
 	public double getCapacidade() { //retorna o peso maximo suportado pelo vagao
 		return capacidadeCarga;
 	}
@@ -22,10 +24,12 @@ public class Vagao extends ElementoDeComposicao{
 		this.capacidadeCarga = peso;
 	}
 
+	@Override
 	public Composicao getComposicao() {
 		return composicao;
 	}
 
+	@Override
 	public void setComposicao(Composicao composicao) {
 		this.composicao = composicao;
 	}

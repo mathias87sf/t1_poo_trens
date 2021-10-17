@@ -52,7 +52,7 @@ public class Composicao {
 		//só é possível engatar locomotivas antes dos vagões
 		for (ElementoDeComposicao elementoDeComposicao : composicao) {
 			if(elementoDeComposicao instanceof Vagao) { //se há uma instância de vagão na composição, então não pode mais engatar locomotivas
-				//System.out.println(">>> ERRO: Nao eh possivel engatar LOCOMOTIVAS APOS VAGOES!");	
+				System.out.println(">>> ERRO: Nao eh possivel engatar LOCOMOTIVAS APOS VAGOES!");	
 				return false;
 			}
 		}
@@ -79,7 +79,7 @@ public class Composicao {
 	public boolean engataVagao(Vagao vagao) {
 		//se não há locomotivas, não há como engatar vagões
 		if (qtdLocomotivas < 1) { 
-			//System.out.println(">>> ERRO: Nao eh possivel engatar VAGOES SEM LOCOMOTIVA!");
+			System.out.println(">>> ERRO: Nao eh possivel engatar VAGOES SEM LOCOMOTIVA!");
 			return false;
 		}
 	
@@ -112,13 +112,13 @@ public class Composicao {
 				
 				return true;
 			} else {
-				//System.out.println(">>> ERRO: Quantidade limite de vagoes atingida!");
+				System.out.println(">>> ERRO: Quantidade limite de vagoes atingida!");
 			}
 		} else {
-			//System.out.println(">>> ERRO: Peso limite atingido!");
+			System.out.println(">>> ERRO: Peso limite atingido!");
 		}
 
-		//System.out.println(">>> ERRO: FALHEI em adicionar um vagao!");
+		System.out.println(">>> ERRO: FALHEI em adicionar um vagao!");
 		return false;
 	}
 	
