@@ -12,34 +12,35 @@ public class Patio {
         Patio patio = new Patio();
 
         //populando garagem de locomotivas
-        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(123, 1000, 10)); //(id, peso suportado, numero de locomotivas suportado)
-        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(456, 2000, 20));
-        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(789, 3000, 30));
-        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(321, 4000, 40));
-        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(654, 5000, 50));
-        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(987, 6000, 60));
+        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(11, 100000, 10)); //(id, peso suportado, numero de locomotivas suportado)
+        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(22, 200000, 20));
+        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(33, 300000, 30));
+        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(44, 400000, 40));
+        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(55, 500000, 50));
+        patio.garagemLocomotivas.estacionaLocomotiva(new Locomotiva(66, 600000, 60));
 
         //populando garagem da vagoes
-        patio.garagemVagoes.estacionaVagao(new Vagao(111, 100)); // (id, peso suportado)
-        patio.garagemVagoes.estacionaVagao(new Vagao(222, 200));
-        patio.garagemVagoes.estacionaVagao(new Vagao(333, 300));
-        patio.garagemVagoes.estacionaVagao(new Vagao(444, 400));
-        patio.garagemVagoes.estacionaVagao(new Vagao(555, 500));
-        patio.garagemVagoes.estacionaVagao(new Vagao(666, 600));
-        patio.garagemVagoes.estacionaVagao(new Vagao(777, 700));
-        patio.garagemVagoes.estacionaVagao(new Vagao(888, 800));
-        patio.garagemVagoes.estacionaVagao(new Vagao(999, 900));
+        //vagoes de carga
+        patio.garagemVagoes.estacionaVagao(new Vagao(111, 1000)); // (id, peso suportado)
+        patio.garagemVagoes.estacionaVagao(new Vagao(222, 2000));
+        patio.garagemVagoes.estacionaVagao(new Vagao(333, 3000));
+        patio.garagemVagoes.estacionaVagao(new Vagao(444, 4000));
+        patio.garagemVagoes.estacionaVagao(new Vagao(555, 5000));
+        patio.garagemVagoes.estacionaVagao(new Vagao(666, 6000));
+        patio.garagemVagoes.estacionaVagao(new Vagao(777, 7000));
+        patio.garagemVagoes.estacionaVagao(new Vagao(888, 8000));
+        patio.garagemVagoes.estacionaVagao(new Vagao(999, 9000));
 
-        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(11, 50));
-        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(22, 100));
-        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(33, 15));
-        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(44, 20));
-        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(55, 30));
-
+        //vagoes de passageiro
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(01, 10)); //(id, qtd de passageiros)
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(02, 20));
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(03, 30));
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(04, 40));
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(05, 50));
+        patio.garagemVagoes.estacionaVagao(new VagaoPassageiro(00, 100));
 
         patio.menu();     
     }
-
 
     // métodos de apoio
 
@@ -103,7 +104,7 @@ public class Patio {
                 if (idTremValido(id)) { //verifica se o trem existe no patio //poderia ser tb if (getTrem(id) != null)
                     trem = getTrem(id);
                 } else {
-                    System.out.println(">>> Trem [" + id + "] não existe");
+                    System.out.println(">>> Trem [" + id + "] nao existe");
                     trem = null; //pra apaziguar a ira do compilador
                     opt = 0;
                 }
@@ -126,8 +127,15 @@ public class Patio {
                         
                             System.out.println("\n> Digite o identificador da locomotiva que voce quer inserir");
                             int idLocomotiva = scan.nextInt();
+                            Locomotiva locoAux = null;
                             if (garagemLocomotivas.idLocomotivaValido(idLocomotiva)) { //verifica se a locomotiva esta na garagem //ou if(garagemLocomotivas.getLocomotiva(idLocomotiva) != null)
-                                trem.engataLocomotiva(garagemLocomotivas.getLocomotiva(idLocomotiva));
+                                //trem.engataLocomotiva(garagemLocomotivas.getLocomotiva(idLocomotiva)); //DEPRECATED                        
+                                locoAux = garagemLocomotivas.getLocomotiva(idLocomotiva);
+                                if(!trem.engataLocomotiva(locoAux)) {                       //se falhou ao engatar, devolve para a garagem
+                                    garagemLocomotivas.estacionaLocomotiva(locoAux);
+                                    locoAux = null;
+                                }
+                                
                                 break;
                             } else {
                                 System.out.println(">>> A locomotiva ID [" + idLocomotiva + "] nao existe!");
@@ -139,8 +147,14 @@ public class Patio {
                         
                             System.out.println("\n> Digite o identificador do vagao que voce quer inserir");
                             int idVagao = scan.nextInt();
+                            Vagao vagaoAux = null;
                             if (garagemVagoes.idVagaoValido(idVagao)) { //ou if(garagemVagoes.getVagao(idVagao) != null)
-                                trem.engataVagao(garagemVagoes.getVagao(idVagao));
+                                //trem.engataVagao(garagemVagoes.getVagao(idVagao)); //DEPRECATED
+                                vagaoAux = garagemVagoes.getVagao(idVagao);
+                                if(!trem.engataVagao(vagaoAux)){                        //se falhou ao engatar, devolve para a garagem
+                                    garagemVagoes.estacionaVagao(vagaoAux);
+                                    vagaoAux = null;
+                                }
                                 break;                                
                             } else {
                                 System.out.println(">>> O vagao ID [" + idVagao + "] nao existe!");
@@ -155,7 +169,7 @@ public class Patio {
                                 garagemLocomotivas.estacionaLocomotiva(trem.desengataLocomotiva()); //desengata a locomotiva e estaciona na garagem
                                 break;
                             }
-                            if (trem.getQtdadeVagoes() == 0 && trem.getQtdadeLocomotivas() == 1){ //ultima locomotiva destroi tb o trem
+                            if (trem.getQtdadeVagoes() == 0 && trem.getQtdadeLocomotivas() == 1){   //ultima locomotiva destroi tb o trem
                                 garagemLocomotivas.estacionaLocomotiva(trem.desengataLocomotiva()); //desengata a locomotiva e estaciona na garagem
                                 trens.remove(trem);                                                 //remove a locomotiva da composicao
                                 trem = null;
@@ -179,14 +193,17 @@ public class Patio {
                             break;
                     }
                 }
-                
                 trem = null;
             }
 
             //Listar todos os trens ja criados
             if (opt == 3){
-                for (Composicao auxTrem : trens) {
-                    System.out.println(auxTrem);                         
+                if(trens.size() > 0){
+                    for (Composicao auxTrem : trens) {
+                        System.out.println(auxTrem);                         
+                    }
+                } else {
+                    System.out.println("Nao ha trens para listar!");
                 }
             }
 
@@ -222,9 +239,7 @@ public class Patio {
                 scan.close();
                 System.exit(0);
             }
-
             trem = null;
-        }
-       
+        }  
     }
 }
